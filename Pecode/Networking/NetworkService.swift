@@ -9,7 +9,7 @@ protocol NetworkServiceProtocol {
 final class NetworkService: NetworkServiceProtocol {
     
     struct Constants {
-        static let key = "52811f8474634c7a9d5ce7c63eba647a"
+        static let key = "c71779d29e1644c2938183bed30389fe"
     }
     
     func getNews(newsType: Int, page: Int, completion: @escaping (Result<[Article],Error>) -> Void) {

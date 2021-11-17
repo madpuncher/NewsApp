@@ -150,8 +150,8 @@ final class MainViewController: UIViewController, MainViewProtocol, MainTableCel
         tableView.backgroundColor = #colorLiteral(red: 0.156837225, green: 0.1632107198, blue: 0.1931262016, alpha: 1)
     }
     
-    private func getNews(type: Int, page: Int) {
-        presenter.requestToGetNews(type: type, page: 1)
+    private func getNews(type: Int, page: Int, newType: Bool) {
+        presenter.requestToGetNews(type: type, page: 1, newType: newType)
     }
     
     private func configureRefresher() {
@@ -163,11 +163,11 @@ final class MainViewController: UIViewController, MainViewProtocol, MainTableCel
     @objc private func segmentedValueChanged() {
         
         let segmentIndex = segmentControl.selectedSegmentIndex
-        getNews(type: segmentIndex, page: 1)
+        getNews(type: segmentIndex, page: 1, newType: true)
     }
     
     @objc private func refresh() {
-        presenter.requestToGetNews(type: segmentControl.selectedSegmentIndex, page: 1)
+        presenter.requestToGetNews(type: segmentControl.selectedSegmentIndex, page: 1, newType: true)
         refreshControl.endRefreshing()
     }
     
@@ -219,7 +219,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         guard isLoadingIndexPath(indexPath) else { return }
         
         page += 1
-        presenter.requestToGetNews(type: segmentControl.selectedSegmentIndex, page: page)
+        presenter.requestToGetNews(type: segmentControl.selectedSegmentIndex, page: page, newType: false)
         
     }
     
